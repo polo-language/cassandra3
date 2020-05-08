@@ -1,4 +1,4 @@
-# $FreeBSD: head/databases/cassandra3/Makefile 520356 2019-12-18 02:27:35Z yuri $
+# $FreeBSD: head/databases/cassandra3/Makefile 533701 2020-05-02 19:48:32Z pi $
 
 PORTNAME=	cassandra
 DISTVERSION=	3.11.6
@@ -16,12 +16,17 @@ COMMENT=	Highly scalable distributed database
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
 
 USES=		python:2.7
 USE_JAVA=	yes
 USE_ANT=	yes
 USE_RC_SUBR=	cassandra
+
+CONFLICTS=	cassandra4
 
 JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
