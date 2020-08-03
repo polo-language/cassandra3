@@ -35,8 +35,9 @@
 %%DATADIR%%/lib/HdrHistogram-2.1.9.jar
 %%DATADIR%%/lib/high-scale-lib-1.0.6.jar
 %%DATADIR%%/lib/hppc-0.5.4.jar
-%%DATADIR%%/lib/jackson-core-asl-1.9.13.jar
-%%DATADIR%%/lib/jackson-mapper-asl-1.9.13.jar
+%%DATADIR%%/lib/jackson-annotations-2.9.10.jar
+%%DATADIR%%/lib/jackson-core-2.9.10.jar
+%%DATADIR%%/lib/jackson-databind-2.9.10.4.jar
 %%DATADIR%%/lib/jamm-0.3.0.jar
 %%DATADIR%%/lib/javax.inject.jar
 %%DATADIR%%/lib/jbcrypt-0.3m.jar

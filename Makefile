@@ -1,15 +1,14 @@
 # $FreeBSD: head/databases/cassandra3/Makefile 543250 2020-07-24 15:47:22Z mikael $
 
 PORTNAME=	cassandra
-DISTVERSION=	3.11.6
-PORTREVISION=	1
+DISTVERSION=	3.11.7
 CATEGORIES=	databases java
 MASTER_SITES=	APACHE/cassandra/${PORTVERSION}:apache \
 		LOCAL/yuri:repo
 PKGNAMESUFFIX=	3
 DISTNAME=	apache-${PORTNAME}-${PORTVERSION}-src
 DISTFILES=	${DISTNAME}.tar.gz:apache \
-		apache-${PORTNAME}-3.11.4-repo.tar.gz:repo
+		apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	language.devel@gmail.com
 COMMENT=	Highly scalable distributed database
