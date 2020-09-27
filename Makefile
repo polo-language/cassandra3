@@ -22,14 +22,16 @@ EXPIRATION_DATE=	2020-09-15
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
 
 USES=		python:2.7
-USE_JAVA=	yes
 USE_ANT=	yes
+USE_JAVA=	yes
+JAVA_VERSION=	1.8
+JAVA_VENDOR=	openjdk
+
 USE_RC_SUBR=	cassandra
 
 CONFLICTS=	cassandra4
 
-JAVA_VERSION=	1.8
-JAVA_VENDOR=	openjdk
+DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 
 REINPLACE_ARGS=	-i ''
 SUB_LIST=	JAVA_HOME=${JAVA_HOME}
@@ -37,9 +39,17 @@ SUB_LIST=	JAVA_HOME=${JAVA_HOME}
 USERS=		cassandra
 GROUPS=		cassandra
 
-DATADIR=	${JAVASHAREDIR}/${PORTNAME}
-DIST_DIR=	${WRKSRC}/build/dist
-REPO_DIR=	${WRKDIR}/repository
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
+PORTDOCS=		*
+
+OPTIONS_DEFINE=		SIGAR DOCS
+OPTIONS_DEFAULT=	SIGAR
+OPTIONS_SUB=		yes
+
+SIGAR_DESC=		Use SIGAR to collect system information
+DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
+			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
+SIGAR_RUN_DEPENDS=	java-sigar>=1.6.4:java/sigar
 
 CONFIG_FILES=	cassandra-env.sh \
 		cassandra-jaas.config \
@@ -52,6 +62,9 @@ CONFIG_FILES=	cassandra-env.sh \
 		logback-tools.xml \
 		logback.xml
 
+DIST_DIR=	${WRKSRC}/build/dist
+REPO_DIR=	${WRKDIR}/repository
+
 SCRIPT_FILES=	cassandra \
 		cqlsh \
 		nodetool \
@@ -60,20 +73,6 @@ SCRIPT_FILES=	cassandra \
 		sstableupgrade \
 		sstableutil \
 		sstableverify
-
-PLIST_SUB=	PORTVERSION=${PORTVERSION}
-
-OPTIONS_DEFINE=		SIGAR DOCS
-OPTIONS_DEFAULT=	SIGAR
-OPTIONS_SUB=		yes
-
-SIGAR_DESC=		Use SIGAR to collect system information
-SIGAR_RUN_DEPENDS=	java-sigar>=1.6.4:java/sigar
-
-DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
-			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
-
-PORTDOCS=		*
 
 do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
