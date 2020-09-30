@@ -1,4 +1,4 @@
---- build.xml.orig	2020-07-14 21:00:51 UTC
+--- build.xml.orig	2020-08-28 13:15:14 UTC
 +++ build.xml
 @@ -23,6 +23,7 @@
      <property file="build.properties" />
@@ -7,7 +7,7 @@
 +    <property name="pycmd" value="python"/>
  
      <!-- default version and SCM information -->
-     <property name="base.version" value="3.11.7"/>
+     <property name="base.version" value="3.11.8"/>
 @@ -80,14 +81,14 @@
      <condition property="version" value="${base.version}">
        <isset property="release"/>
