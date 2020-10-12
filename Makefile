@@ -29,6 +29,10 @@ JAVA_VENDOR=	openjdk
 
 USE_RC_SUBR=	cassandra
 
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
+		bash>0:shells/bash
+TEST_TARGET=	test
+
 CONFLICTS=	cassandra4
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
@@ -73,6 +77,9 @@ SCRIPT_FILES=	cassandra \
 		sstableupgrade \
 		sstableutil \
 		sstableverify
+
+post-patch:
+	@${CHMOD} ug+x ${WRKSRC}/pylib/cassandra-cqlsh-tests.sh
 
 do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
@@ -124,5 +131,8 @@ post-install-DOCS-on:
 
 post-install-SIGAR-on:
 	${LN} -s ${JAVAJARDIR}/sigar.jar ${STAGEDIR}${DATADIR}/lib/sigar.jar
+
+do-test:
+	@cd ${WRKSRC} && pylib/cassandra-cqlsh-tests.sh ${WRKSRC} ${REPO_DIR} ${PYTHON_CMD} ${JAVA_HOME}
 
 .include <bsd.port.mk>
