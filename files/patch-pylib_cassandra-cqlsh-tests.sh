@@ -25,7 +25,7 @@
  # Loop to prevent failure due to maven-ant-tasks not downloading a jar..
  for x in $(seq 1 3); do
 -    ant -buildfile ${CASSANDRA_DIR}/build.xml realclean jar
-+    ant -buildfile ${CASSANDRA_DIR}/build.xml -Dlocalm2=${REPO_DIR} realclean jar
++    ant -buildfile ${CASSANDRA_DIR}/build.xml -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} realclean jar
      RETURN="$?"
      if [ "${RETURN}" -eq "0" ]; then
          break
