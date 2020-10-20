@@ -133,6 +133,7 @@ post-install-SIGAR-on:
 	${LN} -s ${JAVAJARDIR}/sigar.jar ${STAGEDIR}${DATADIR}/lib/sigar.jar
 
 do-test:
+	# A bare 'python' must be on PATH for test to succeed.
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.patched
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.orig bin/cassandra.in.sh
 	@cd ${WRKSRC} && pylib/cassandra-cqlsh-tests.sh ${WRKSRC} ${REPO_DIR} ${PYTHON_CMD} ${JAVA_HOME}
