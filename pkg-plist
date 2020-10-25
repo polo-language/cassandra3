@@ -111,7 +111,7 @@
 %%DATADIR%%/lib/ohc-core-j8-0.4.4.jar
 %%DATADIR%%/lib/reporter-config-base-3.0.3.jar
 %%DATADIR%%/lib/reporter-config3-3.0.3.jar
-%%DATADIR%%/lib/six-1.7.3-py2.py3-none-any.zip
+%%DATADIR%%/lib/six-1.12.0-py2.py3-none-any.zip
 %%DATADIR%%/lib/slf4j-api-1.7.7.jar
 %%DATADIR%%/lib/snakeyaml-1.11.jar
 %%DATADIR%%/lib/snappy-java.jar

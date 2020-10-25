@@ -1,4 +1,4 @@
---- build.xml.orig	2020-08-28 13:15:14 UTC
+--- build.xml.orig	2020-10-20 17:07:48 UTC
 +++ build.xml
 @@ -23,6 +23,7 @@
      <property file="build.properties" />
@@ -7,7 +7,7 @@
 +    <property name="pycmd" value="python"/>
  
      <!-- default version and SCM information -->
-     <property name="base.version" value="3.11.8"/>
+     <property name="base.version" value="3.11.9"/>
 @@ -80,14 +81,14 @@
      <condition property="version" value="${base.version}">
        <isset property="release"/>
@@ -181,7 +181,17 @@
      <!-- creates release tarballs -->
      <target name="artifacts" depends="jar,javadoc,gen-doc"
              description="Create Cassandra release artifacts">
-@@ -1786,8 +1862,8 @@
+@@ -1644,8 +1720,7 @@
+   <target name="rat-init" depends="maven-ant-tasks-init">
+     <artifact:dependencies pathId="rat.classpath">
+       <dependency groupId="org.apache.rat" artifactId="apache-rat-tasks" version="0.6" />
+-      <remoteRepository refid="central"/>
+-      <remoteRepository refid="apache"/>
++      <localRepository path="${localm2}"/>
+     </artifact:dependencies>
+     <typedef uri="antlib:org.apache.rat.anttasks" classpathref="rat.classpath"/>
+   </target>
+@@ -1794,8 +1869,8 @@
      <exec executable="nproc" outputproperty="cores.count" os="Linux,SunOS,Solaris" failifexecutionfails="false">
        <arg value="--all"/>
      </exec>
@@ -192,7 +202,7 @@
        <arg value="-n"/>
        <arg value="hw.ncpu"/>
      </exec>
-@@ -1807,6 +1883,11 @@
+@@ -1815,6 +1890,11 @@
      <exec executable="sysctl" outputproperty="mem.size" os="Mac,Mac OS X,Darwin" failifexecutionfails="false">
        <arg value="-n"/>
        <arg value="hw.memsize"/>
