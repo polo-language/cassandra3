@@ -29,7 +29,8 @@ GH_PROJECT=	cassandra
 GH_TAGNAME=	fed550d
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-		bash>0:shells/bash
+		bash>0:shells/bash \
+		git>0:devel/git
 TEST_TARGET=	test
 
 CONFLICTS=	cassandra4
