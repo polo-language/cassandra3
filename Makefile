@@ -5,7 +5,6 @@ DISTVERSION=	3.11.9
 CATEGORIES=	databases java
 MASTER_SITES=	LOCAL/yuri:repo
 PKGNAMESUFFIX=	3
-DISTNAME=	apache-${PORTNAME}-${PORTVERSION}-src
 DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	language.devel@gmail.com
@@ -13,9 +12,6 @@ COMMENT=	Highly scalable distributed database
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
-
-DEPRECATED=	Uses deprecated version of python
-EXPIRATION_DATE=	2020-09-15
 
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
 
@@ -30,7 +26,7 @@ USE_RC_SUBR=	cassandra
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
 GH_PROJECT=	cassandra
-GH_TAGNAME=	cf25a0d
+GH_TAGNAME=	fed550d
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
 		bash>0:shells/bash
