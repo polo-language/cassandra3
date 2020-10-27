@@ -19,8 +19,7 @@
 %%DATADIR%%/lib/asm-5.0.4.jar
 %%DATADIR%%/lib/caffeine-2.2.6.jar
 %%DATADIR%%/lib/cassandra-driver-core-3.0.1-shaded.jar
-%%DATADIR%%/lib/cassandra-driver-internal-only-3.10.zip
-%%DATADIR%%/lib/cassandra-driver-internal-only-3.11.0-bb96859b.zip
+%%DATADIR%%/lib/cassandra-driver-internal-only-3.23.0.post0-1a184b99.zip
 %%DATADIR%%/lib/commons-cli-1.1.jar
 %%DATADIR%%/lib/commons-codec-1.9.jar
 %%DATADIR%%/lib/commons-lang3-3.1.jar
@@ -31,6 +30,7 @@
 %%DATADIR%%/lib/disruptor-3.0.1.jar
 %%DATADIR%%/lib/ecj-4.4.2.jar
 %%DATADIR%%/lib/futures-2.1.6-py2.py3-none-any.zip
+%%DATADIR%%/lib/geomet-0.1.0.zip
 %%DATADIR%%/lib/guava-18.0.jar
 %%DATADIR%%/lib/HdrHistogram-2.1.9.jar
 %%DATADIR%%/lib/high-scale-lib-1.0.6.jar

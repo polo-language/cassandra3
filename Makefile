@@ -30,7 +30,7 @@ USE_RC_SUBR=	cassandra
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
 GH_PROJECT=	cassandra
-GH_TAGNAME=	393b317
+GH_TAGNAME=	cf25a0d
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
 		bash>0:shells/bash
