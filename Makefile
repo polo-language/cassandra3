@@ -14,6 +14,9 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
+		bash>0:shells/bash \
+		git>0:devel/git
 
 USES=		python:3.6+
 USE_ANT=	yes
@@ -28,9 +31,6 @@ GH_ACCOUNT=	polo-language
 GH_PROJECT=	cassandra
 GH_TAGNAME=	c6f6387
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-		bash>0:shells/bash \
-		git>0:devel/git
 TEST_TARGET=	test
 
 CONFLICTS=	cassandra4
