@@ -1,9 +1,9 @@
-# $FreeBSD: head/databases/cassandra3/Makefile 561562 2021-01-14 14:34:38Z dbaio $
+# $FreeBSD: head/databases/cassandra3/Makefile 565154 2021-02-13 17:47:34Z nc $
 
 PORTNAME=	cassandra
 DISTVERSION=	3.11.10
 CATEGORIES=	databases java
-MASTER_SITES=	LOCAL/rene:repo
+MASTER_SITES=	LOCAL/nc:repo
 PKGNAMESUFFIX=	3
 DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
