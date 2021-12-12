@@ -1,11 +1,14 @@
 # $FreeBSD: head/databases/cassandra3/Makefile 565154 2021-02-13 17:47:34Z nc $
 
 PORTNAME=	cassandra
-DISTVERSION=	3.11.10
+DISTVERSION=	3.11.11
 CATEGORIES=	databases java
-MASTER_SITES=	LOCAL/nc:repo
+MASTER_SITES=	APACHE/cassandra/${PORTVERSION}:apache \
+		LOCAL/nc:repo
 PKGNAMESUFFIX=	3
-DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
+DISTNAME=	apache-${PORTNAME}-${PORTVERSION}-src
+DISTFILES=	${DISTNAME}.tar.gz:apache \
+		apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	language.devel@gmail.com
 COMMENT=	Highly scalable distributed database
@@ -25,11 +28,6 @@ JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
 
 USE_RC_SUBR=	cassandra
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	polo-language
-GH_PROJECT=	cassandra
-GH_TAGNAME=	62fe1f7
 
 TEST_TARGET=	test
 
@@ -80,6 +78,7 @@ SCRIPT_FILES=	cassandra \
 
 post-patch:
 	@${CHMOD} ug+x ${WRKSRC}/pylib/cassandra-cqlsh-tests.sh
+	@${REINPLACE_CMD} -e 's|$${user.home}/.m2/repository/|$${localm2}/|g' ${WRKSRC}/.build/build-resolver.xml
 
 do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
