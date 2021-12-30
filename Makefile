@@ -76,6 +76,8 @@ SCRIPT_FILES=	cassandra \
 		sstableutil \
 		sstableverify
 
+ANT_OPTS_LOCAL=	${ANT_OPTS} -Xmx512m
+
 post-patch:
 	@${CHMOD} ug+x ${WRKSRC}/pylib/cassandra-cqlsh-tests.sh
 	@${REINPLACE_CMD} -e 's|$${user.home}/.m2/repository/|$${localm2}/|g' ${WRKSRC}/.build/build-resolver.xml
@@ -84,7 +86,7 @@ do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
 
 do-build-DOCS-on:
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
 
 do-build-DOCS-off:
 	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} freebsd-stage
@@ -135,7 +137,7 @@ do-test:
 	# A bare 'python' must be on PATH for test to succeed.
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.patched
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.orig bin/cassandra.in.sh
-	@cd ${WRKSRC} && pylib/cassandra-cqlsh-tests.sh ${WRKSRC} python3 ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD}
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ANT_CMD="${ANT}" pylib/cassandra-cqlsh-tests.sh ${WRKSRC} python3 ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD}
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.orig
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.patched bin/cassandra.in.sh
 
