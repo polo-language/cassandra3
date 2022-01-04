@@ -3,12 +3,9 @@
 PORTNAME=	cassandra
 DISTVERSION=	3.11.11
 CATEGORIES=	databases java
-MASTER_SITES=	APACHE/cassandra/${PORTVERSION}:apache \
-		LOCAL/nc:repo
+MASTER_SITES=	LOCAL/nc:repo
 PKGNAMESUFFIX=	3
-DISTNAME=	apache-${PORTNAME}-${PORTVERSION}-src
-DISTFILES=	${DISTNAME}.tar.gz:apache \
-		apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
+DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	language.devel@gmail.com
 COMMENT=	Highly scalable distributed database
@@ -28,6 +25,11 @@ JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
 
 USE_RC_SUBR=	cassandra
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	polo-language
+GH_PROJECT=	cassandra
+GH_TAGNAME=	041b5c8
 
 TEST_TARGET=	test
 
@@ -137,7 +139,7 @@ do-test:
 	# A bare 'python' must be on PATH for test to succeed.
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.patched
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.orig bin/cassandra.in.sh
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ANT_CMD="${ANT}" pylib/cassandra-cqlsh-tests.sh ${WRKSRC} python3 ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD}
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ANT_CMD="${ANT}" pylib/cassandra-cqlsh-tests.sh ${WRKSRC} ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD}
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.orig
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.patched bin/cassandra.in.sh
 
