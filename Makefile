@@ -139,7 +139,7 @@ do-test:
 	# A bare 'python' must be on PATH for test to succeed.
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.patched
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.orig bin/cassandra.in.sh
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ANT_CMD="${ANT}" pylib/cassandra-cqlsh-tests.sh ${WRKSRC} ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD}
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ANT_CMD="${ANT}" pylib/cassandra-cqlsh-tests.sh ${WRKSRC} ${JAVA_HOME} ${REPO_DIR} ${PYTHON_CMD} ${REPO_DIR}
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh bin/cassandra.in.sh.orig
 	@cd ${WRKSRC} && ${MV} bin/cassandra.in.sh.patched bin/cassandra.in.sh
 

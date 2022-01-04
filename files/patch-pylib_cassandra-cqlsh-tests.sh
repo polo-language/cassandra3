@@ -14,7 +14,7 @@
  
  ################################
  #
-@@ -24,9 +23,12 @@
+@@ -24,9 +23,13 @@
  ################################
  
  WORKSPACE=$1
@@ -23,42 +23,23 @@
 +JAVA_HOME=$2
 +REPO_DIR=$3
 +PYTHON_CMD=$4
++REPO_DIR=$5
  
 +PYTHON_VERSION=python3
 +
  if [ "${WORKSPACE}" = "" ]; then
      echo "Specify Cassandra source directory"
      exit
-@@ -63,23 +65,23 @@ else
-     TESTSUITE_NAME="${TESTSUITE_NAME}.jdk8"
- fi
+@@ -65,7 +68,7 @@ fi
  
--# Loop to prevent failure due to maven-ant-tasks not downloading a jar..
--for x in $(seq 1 3); do
+ # Loop to prevent failure due to maven-ant-tasks not downloading a jar..
+ for x in $(seq 1 3); do
 -    ant -buildfile ${CASSANDRA_DIR}/build.xml realclean jar
--    RETURN="$?"
--    if [ "${RETURN}" -eq "0" ]; then
--        break
--    fi
--done
--# Exit, if we didn't build successfully
--if [ "${RETURN}" -ne "0" ]; then
--    echo "Build failed with exit code: ${RETURN}"
--    exit ${RETURN}
--fi
-+## Loop to prevent failure due to maven-ant-tasks not downloading a jar..
-+#for x in $(seq 1 3); do
-+#    ant -buildfile ${CASSANDRA_DIR}/build.xml realclean jar
-+#    RETURN="$?"
-+#    if [ "${RETURN}" -eq "0" ]; then
-+#        break
-+#    fi
-+#done
-+## Exit, if we didn't build successfully
-+#if [ "${RETURN}" -ne "0" ]; then
-+#    echo "Build failed with exit code: ${RETURN}"
-+#    exit ${RETURN}
-+#fi
++    ${ANT_CMD} -buildfile ${CASSANDRA_DIR}/build.xml realclean jar -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR}
+     RETURN="$?"
+     if [ "${RETURN}" -eq "0" ]; then
+         break
+@@ -79,7 +82,7 @@ fi
  
  # Set up venv with dtest dependencies
  set -e # enable immediate exit if venv setup fails
@@ -67,7 +48,7 @@
  source venv/bin/activate
  pip install -r ${CASSANDRA_DIR}/pylib/requirements.txt
  pip freeze
-@@ -120,7 +122,7 @@ case "${pre_or_post_cdc}" in
+@@ -120,7 +123,7 @@ case "${pre_or_post_cdc}" in
          ;;
  esac
  
