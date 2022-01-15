@@ -29,7 +29,7 @@ USE_RC_SUBR=	cassandra
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
 GH_PROJECT=	cassandra
-GH_TAGNAME=	041b5c8
+GH_TAGNAME=	84496b0
 
 TEST_TARGET=	test
 
