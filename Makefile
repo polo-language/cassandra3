@@ -1,5 +1,3 @@
-# $FreeBSD: head/databases/cassandra3/Makefile 565154 2021-02-13 17:47:34Z nc $
-
 PORTNAME=	cassandra
 DISTVERSION=	3.11.11
 CATEGORIES=	databases java
@@ -18,17 +16,17 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAV
 		bash>0:shells/bash \
 		git>0:devel/git
 
-USES=		python:3.6+
+USES=		cpe python:3.6+
 USE_ANT=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
+CPE_VENDOR=	apache
 
 USE_RC_SUBR=	cassandra
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
-GH_PROJECT=	cassandra
 GH_TAGNAME=	84496b0
 
 TEST_TARGET=	test
