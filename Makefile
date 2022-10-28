@@ -1,12 +1,13 @@
 PORTNAME=	cassandra
-DISTVERSION=	3.11.11
+DISTVERSION=	3.11.14
 CATEGORIES=	databases java
-MASTER_SITES=	LOCAL/nc:repo
+#MASTER_SITES=	LOCAL/nc:repo
 PKGNAMESUFFIX=	3
-DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
+#DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	language.devel@gmail.com
 COMMENT=	Highly scalable distributed database
+WWW=		https://cassandra.apache.org/
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -27,7 +28,7 @@ USE_RC_SUBR=	cassandra
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
-GH_TAGNAME=	0150ddc
+GH_TAGNAME=	cbf1825
 
 TEST_TARGET=	test
 
@@ -80,16 +81,15 @@ ANT_OPTS_LOCAL=	${ANT_OPTS} -Xmx512m
 
 post-patch:
 	@${CHMOD} ug+x ${WRKSRC}/pylib/cassandra-cqlsh-tests.sh
-	@${REINPLACE_CMD} -e 's|$${user.home}/.m2/repository/|$${localm2}/|g' ${WRKSRC}/.build/build-resolver.xml
 
 do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
 
 do-build-DOCS-on:
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS_LOCAL}" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocal.repository=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
 
 do-build-DOCS-off:
-	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} freebsd-stage
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocal.repository=${REPO_DIR} freebsd-stage
 
 post-build:
 .for f in ${SCRIPT_FILES}
