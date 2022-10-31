@@ -3,7 +3,7 @@ DISTVERSION=	3.11.14
 CATEGORIES=	databases java
 #MASTER_SITES=	LOCAL/nc:repo
 PKGNAMESUFFIX=	3
-#DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
+DISTFILES=	apache-${PORTNAME}-${DISTVERSION}-repo.tar.gz:repo
 
 MAINTAINER=	language.devel@gmail.com
 COMMENT=	Highly scalable distributed database
@@ -28,7 +28,7 @@ USE_RC_SUBR=	cassandra
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	polo-language
-GH_TAGNAME=	cbf1825
+GH_TAGNAME=	bd37e3a
 
 TEST_TARGET=	test
 
